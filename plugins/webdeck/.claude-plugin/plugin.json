@@ -1,0 +1,14 @@
+{
+  "name": "webdeck",
+  "version": "2.1.0",
+  "description": "Zero-dependency HTML presentation generator with safe presets, bold template-library styles, PPT conversion, and anti-AI-slop design philosophy.",
+  "skills": "./skills/",
+  "author": {
+    "name": "zarazhangrui",
+    "url": "https://github.com/zarazhangrui"
+  },
+  "homepage": "https://github.com/LifaSun/WebDeck",
+  "repository": "https://github.com/LifaSun/WebDeck",
+  "license": "MIT",
+  "keywords": ["presentations", "slides", "html", "design", "powerpoint", "animations", "templates"]
+}
