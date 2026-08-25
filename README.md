@@ -1,10 +1,14 @@
 # WebDeck
 
-A coding-agent skill for creating stunning HTML presentations — from scratch or by converting PowerPoint files. It is packaged as a Claude Code plugin, and the core `SKILL.md` can also be read by other coding agents with filesystem and shell access.
+A coding-agent skill for creating polished, animation-rich HTML presentations from scratch, from an existing HTML deck, or from PowerPoint. Every generated deck is a self-contained HTML file with no build step; optional conversion, export, and deployment workflows have their own documented tools.
+
+WebDeck is a rebranded derivative of [frontend-slides](https://github.com/zarazhangrui/frontend-slides), created by [Zara Zhang](https://github.com/zarazhangrui). The original copyright notice and MIT license are preserved.
 
 ## 📺 Watch the Walkthrough & Tutorial
 
 New here? This beginner-friendly video walks you through the whole thing, start to finish.
+
+> This walkthrough was recorded for the original frontend-slides project. The workflow still applies to WebDeck; use the `webdeck` command names shown below.
 
 <a href="https://www.youtube.com/watch?v=372Iksaz8b0" title="WebDeck — walkthrough & tutorial (beginner-friendly)">
   <img src="https://img.youtube.com/vi/372Iksaz8b0/maxresdefault.jpg" alt="Watch the WebDeck walkthrough and tutorial on YouTube" width="100%" />
@@ -22,12 +26,28 @@ https://github.com/user-attachments/assets/ef57333e-f879-432a-afb9-180388982478
 
 ### Key Features
 
-- **Zero Dependencies** — Single HTML files with inline CSS/JS. No npm, no build tools, no frameworks.
+- **Zero-build output** — Single HTML files with inline CSS/JS. Generated decks need no framework or build tool.
 - **Visual Style Discovery** — Can't articulate design preferences? No problem. Pick from generated visual previews.
 - **PPT Conversion** — Convert existing PowerPoint files to web, preserving all images and content.
 - **Anti-AI-Slop** — Curated distinctive styles that avoid generic AI aesthetics (bye-bye, purple gradients on white).
 - **Bold Template Pack** — Optional design-forward templates from `beautiful-html-templates`, loaded progressively so safe presets still work as the default fallback.
 - **Production Quality** — Accessible, fixed 16:9, well-commented code you can customize.
+
+## Quick Start
+
+For Claude Code, add the marketplace and install the plugin using the two commands in [Installation](#installation), then invoke:
+
+```text
+/webdeck:webdeck
+```
+
+For Codex or another filesystem-capable coding agent, share this repository URL and ask the agent to read `SKILL.md` before creating or converting a presentation:
+
+```text
+https://github.com/LifaSun/WebDeck
+```
+
+The default result is a self-contained `.html` presentation. PDF export and live deployment are optional follow-up actions.
 
 ## Installation
 
@@ -173,6 +193,10 @@ the agent expands that preview's own CSS and layout system into the full deck.
 ## Bold Template Gallery
 
 WebDeck can now draw from the 34 bold design systems in [`beautiful-html-templates`](https://github.com/zarazhangrui/beautiful-html-templates). Three screenshots per template show how each visual system handles different slide layouts. Click any template name to inspect the source template library.
+
+<details>
+<summary><strong>Browse the full 34-template gallery</strong></summary>
+
 
 ### [Soft Editorial](https://github.com/zarazhangrui/beautiful-html-templates/tree/main/templates/soft-editorial/)
 
@@ -514,6 +538,8 @@ WebDeck can now draw from the 34 bold design systems in [`beautiful-html-templat
 
 > Warm cream and rust-red supper-club aesthetic with bold uppercase grotesk headlines, italic Fraunces, and pill-shaped outlined buttons.
 
+</details>
+
 ## Architecture
 
 This skill uses **progressive disclosure** — the main `SKILL.md` is a workflow map, with supporting files loaded on-demand only when needed:
@@ -587,8 +613,8 @@ Uses [Playwright](https://playwright.dev) to screenshot each slide at 1920×1080
 
 ## Credits
 
-Created by [@zarazhangrui](https://github.com/zarazhangrui).
+Originally created by [@zarazhangrui](https://github.com/zarazhangrui). WebDeck preserves the original author attribution while maintaining the `webdeck` branding and installation paths in this repository.
 
 ## License
 
-MIT — Use it, modify it, share it.
+MIT — You may use, modify, publish, and redistribute the software. Copies or substantial portions must retain the copyright notice and MIT permission notice in [`LICENSE`](LICENSE). The software is provided without warranty.

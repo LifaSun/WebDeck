@@ -1,39 +1,25 @@
 ---
 name: webdeck
-description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
+description: Create or improve self-contained, animation-rich HTML presentations, including PowerPoint-to-web conversion. Use for slide decks, talks, pitches, and presentation redesigns; do not use for ordinary websites, app interfaces, or text documents.
 ---
 
 # WebDeck
 
-Create zero-dependency, animation-rich HTML presentations that run entirely in the browser.
+Create self-contained, animation-rich HTML presentations that run entirely in the browser without a build step.
 
 ## Core Principles
 
-1. **Zero Dependencies** — Single HTML files with inline CSS/JS. No npm, no build tools.
+1. **Zero-build Output** — Generated decks are single HTML files with inline CSS/JS. Optional PPT conversion, PDF export, and deployment may use separate tools.
 2. **Show, Don't Tell** — Generate visual previews, not abstract choices. People discover what they want by seeing it.
 3. **Distinctive Design** — No generic "AI slop." Every presentation must feel custom-crafted.
 4. **Progressive Disclosure** — Read lightweight style indexes first. For bold templates, use small preview cards for style previews and load the full `design.md` only after the user picks that template.
 5. **Fixed 16:9 Stage (NON-NEGOTIABLE)** — Every deck uses a 1920×1080 slide canvas scaled as a whole to the viewport. Slides must stay 16:9 on every screen, including phones. Do not reflow slide content to fit the device.
 
-## Design Aesthetics
+## Design Direction
 
-You tend to converge toward generic, "on distribution" outputs. In frontend design, this creates what users call the "AI slop" aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.
+Make the deck feel authored for its subject and audience. Commit to a recognizable visual thesis: distinctive typography, a controlled palette, a consistent layout grammar, and one purposeful atmospheric or graphic device. Prefer a few well-orchestrated transitions over scattered effects.
 
-Focus on:
-
-- Typography: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics.
-- Color & Theme: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes. Draw from IDE themes and cultural aesthetics for inspiration.
-- Motion: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions.
-- Backgrounds: Create atmosphere and depth rather than defaulting to solid colors. Layer CSS gradients, use geometric patterns, or add contextual effects that match the overall aesthetic.
-
-Avoid generic AI-generated aesthetics:
-
-- Overused font families (Inter, Roboto, Arial, system fonts)
-- Cliched color schemes (particularly purple gradients on white backgrounds)
-- Predictable layouts and component patterns
-- Cookie-cutter design that lacks context-specific character
-
-Interpret creatively and make unexpected choices that feel genuinely designed for the context. Vary between light and dark themes, different fonts, different aesthetics. You still tend to converge on common choices (Space Grotesk, for example) across generations. Avoid this: it is critical that you think outside the box!
+Avoid generic defaults such as system fonts, purple gradients on white, interchangeable card grids, and decoration unrelated to the content. Use CSS variables to keep typography, color, spacing, and motion consistent across slides.
 
 ## Fixed Stage Rules
 
@@ -88,18 +74,18 @@ When enhancing existing presentations, fixed-stage fitting is the biggest risk:
 
 ## Phase 1: Content Discovery (New Presentations)
 
-**Ask ALL questions together** so the user fills everything out at once. If the current environment provides a native structured-question UI, use it; otherwise ask in one concise message with clearly numbered choices:
+Use information the user already provided. Ask only for missing decisions that materially affect the deck, and group those questions into one concise message. If the environment provides a native structured-question UI, use it; otherwise use clearly numbered choices. If the brief is already sufficient, proceed without repeating questions.
 
-**Question 1 — Purpose** (header: "Purpose"):
+**Purpose** (header: "Purpose"):
 What is this presentation for? Options: Pitch deck / Teaching-Tutorial / Conference talk / Internal presentation
 
-**Question 2 — Length** (header: "Length"):
+**Length** (header: "Length"):
 Approximately how many slides? Options: Short 5-10 / Medium 10-20 / Long 20+
 
-**Question 3 — Content** (header: "Content"):
+**Content readiness** (header: "Content"):
 Do you have content ready? Options: All content ready / Rough notes / Topic only
 
-**Question 4 — Density** (header: "Density"):
+**Density** (header: "Density"):
 How dense should the deck feel? Options:
 
 - "Low density / speaker-led" — Big ideas, fewer words, more visual breathing room
@@ -113,7 +99,7 @@ If user has content, ask them to share it.
 
 ### Step 1.2: Image Evaluation (if images provided)
 
-If user selected "No images" → skip to Phase 2.
+If the user provided no images and did not request image sourcing, skip to Phase 2.
 
 If user provides an image folder:
 
@@ -260,9 +246,10 @@ When converting PowerPoint files:
 
 ## Phase 5: Delivery
 
-1. **Clean up** — Delete `.webdeck/slide-previews/` if it exists
-2. **Open** — Use `open [filename].html` to launch in browser
-3. **Summarize** — Tell the user:
+1. **Verify** — Render every slide and inspect at a desktop viewport plus one phone viewport. Confirm the 16:9 stage scales as a unit, text and panels do not overflow or overlap, assets load, keyboard navigation works, reduced-motion behavior is present, and no internal preview/template labels are visible.
+2. **Clean up** — Delete only the `.webdeck/slide-previews/` directory generated for the current task, if it exists
+3. **Open** — Launch the HTML in the available browser using the environment's normal open mechanism
+4. **Summarize** — Tell the user:
    - File location, style name, slide count
    - Navigation: Arrow keys, Space, swipe/tap if enabled
    - How to customize: `:root` CSS variables for colors, font link for typography, `.reveal` class for animations
@@ -273,7 +260,9 @@ When converting PowerPoint files:
 
 ## Phase 6: Share & Export (Optional)
 
-After delivery, **ask the user:** _"Would you like to share this presentation? I can deploy it to a live URL (works on any device including phones) or export it as a PDF."_
+After delivery, offer export or deployment only when it is a natural next step. Do not deploy, install external tooling, publish, or upload anything without the user's explicit request.
+
+Suggested prompt: _"Would you like to export this presentation as a PDF or deploy it to a live URL?"_
 
 Options:
 
@@ -312,7 +301,7 @@ This deploys the presentation to Vercel — a free hosting platform. The link wo
    - The live URL (from the script output)
    - That it works on any device — they can text it, Slack it, email it
    - To take it down later: visit https://vercel.com/dashboard and delete the project
-   - The Vercel free tier is generous — they won't be charged
+   - Hosting plans and limits can change; the user should review the current Vercel plan before relying on it
 
 **⚠ Deployment gotchas:**
 
